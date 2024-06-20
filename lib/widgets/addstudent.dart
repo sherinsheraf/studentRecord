@@ -1,9 +1,11 @@
 
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:hive/hive.dart';
+import 'package:student/model/student_model.dart';
 
 class AddStudent extends StatefulWidget {
   @override
@@ -37,14 +39,22 @@ class _AddStudent extends State<AddStudent> {
   }
 
   Future<void> _saveStudentData() async {
-    final studentBox = await Hive.openBox('students');
+    final studentBox =  Hive.box<StudentModel>('student');
 
-    await studentBox.add({
-      'name': name.text,
-      'rollno': rollno.text,
-      'studentclass': studentclass.text,
-      'image': _pickedImage
-    });
+   var student = StudentModel(
+    name: name.text,
+    studentClass: studentclass.text,
+    rollNo: int.parse(rollno.text),
+    photo: _pickedImage,
+  );
+
+  // Add the student object to the Hive box and get the auto-generated ID
+  var id = await studentBox.add(student);
+
+  // Optionally, update the object in the box (although usually not necessary)
+  student.id = id; // Assuming id is a field in your Student class
+  studentBox.putAt(id, student);
+    
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("New Student Added")));
 
@@ -106,8 +116,9 @@ class _AddStudent extends State<AddStudent> {
                     )
                   : Image.memory(_pickedImage!, width: 100, height: 100),
             ),
+            SizedBox(height: 40),
             ElevatedButton(
-              onPressed: _saveStudentData,
+              onPressed: ()=>_saveStudentData(),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               child: Text("Save Student Data"),
             ),

@@ -45,11 +45,11 @@ class _ScreenSplashState extends State<ScreenSplash> {
   }
 
   Future<void> checkUserLoggedIn() async {
-    final _sharedPrefs = await SharedPreferences.getInstance();
-   const String SAVE_KEY_NAME = 'false';
+    final sharedPrefs = await SharedPreferences.getInstance();
+   const String key = "SAVE_KEY_NAME";
 
-    final _userLoggedIn = _sharedPrefs.getBool(SAVE_KEY_NAME);
-    if (_userLoggedIn == null || _userLoggedIn == false) {
+    final userLoggedIn = sharedPrefs.getBool(key);
+    if (userLoggedIn == null || userLoggedIn == false) {
       gotoLogin();
     } else {
       Navigator.of(context)

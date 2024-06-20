@@ -8,8 +8,11 @@ import 'package:student/screens/splash.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(StudentAdapter()); // Register your Hive adapter
-  await Hive.openBox<Student>('studentBox'); // Open the Hive box
+
+  if (!Hive.isAdapterRegistered(StudentModelAdapter().typeId)) {
+    Hive.registerAdapter(StudentModelAdapter());
+  } // Register your Hive adapter
+  await Hive.openBox<StudentModel>('student'); // Open the Hive box
   runApp(const MyApp());
 }
 
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Student App',
+      debugShowCheckedModeBanner: false, 
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

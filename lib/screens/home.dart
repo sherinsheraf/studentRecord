@@ -35,89 +35,92 @@ class ScreenHome extends StatelessWidget {
       ]),
      
      
-      body: Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-       const Text (
-          'Hi Sherin, Good Day!',
-           style: TextStyle(
-    color: Color.fromARGB(255, 53, 9, 2),
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Center(
+            child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+         const Text (
+            'Hi Sherin, Good Day!',
+             style: TextStyle(
+            color: Color.fromARGB(255, 53, 9, 2),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ClipOval(
+          child: Image.asset(
+            'assets/image/she.jpg', // Use your image path
+            width: 200, // Set the width of the circular image
+            height: 200, // Set the height of the circular image
+            fit: BoxFit.cover, // Adjust the fit property to determine how the image is scaled and positioned within the circular shape
           ),
         ),
-        SizedBox(
-          height: 20,
+         SizedBox(
+            height: 50,
+          ),
+          
+        
+        
+           InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => AddStudent()));
+          },
+          child: Container(
+            width: 500, // Expand to the full available width
+            height: 50,
+            decoration: BoxDecoration(
+        color: Color(0xFF5CC060), // Use Color(int) to define the color
+        borderRadius: BorderRadius.circular(10), // Add rounded corners
+            ),
+            child: Center(
+        child: Text(
+          'Add Student',
+          style: TextStyle(
+            color: Colors.white, // Text color
+            fontSize: 18, // Text size
+            fontWeight: FontWeight.bold, // Text weight
+          ),
         ),
-        ClipOval(
-  child: Image.asset(
-    'assets/image/she.jpg', // Use your image path
-    width: 200, // Set the width of the circular image
-    height: 200, // Set the height of the circular image
-    fit: BoxFit.cover, // Adjust the fit property to determine how the image is scaled and positioned within the circular shape
-  ),
-),
- SizedBox(
-          height: 50,
+            ),
+          ),
         ),
         
-
-
-         InkWell(
-  onTap: () {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddStudent()));
-  },
-  child: Container(
-    width: 500, // Expand to the full available width
-    height: 50,
-    decoration: BoxDecoration(
-      color: Color(0xFF5CC060), // Use Color(int) to define the color
-      borderRadius: BorderRadius.circular(10), // Add rounded corners
-    ),
-    child: Center(
-      child: Text(
-        'Add Student',
-        style: TextStyle(
-          color: Colors.white, // Text color
-          fontSize: 18, // Text size
-          fontWeight: FontWeight.bold, // Text weight
+        
+              SizedBox(
+            height: 20,
+          ),
+                  InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ListStudents()));
+          },
+          child: Container(
+            width: 500, // Expand to the full available width
+            height: 50,
+            decoration: BoxDecoration(
+        color: Color(0xFF5CC060), // Use Color(int) to define the color
+        borderRadius: BorderRadius.circular(10), // Add rounded corners
+            ),
+            child: Center(
+        child: Text(
+          'View Student',
+          style: TextStyle(
+            color: Colors.white, // Text color
+            fontSize: 18, // Text size
+            fontWeight: FontWeight.bold, // Text weight
+          ),
         ),
+            ),
+          ),
+        ),
+        ],
+            ),
+          ),
       ),
-    ),
-  ),
-),
-
-
-            SizedBox(
-          height: 20,
-        ),
-                InkWell(
-  onTap: () {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ListStudents()));
-  },
-  child: Container(
-    width: 500, // Expand to the full available width
-    height: 50,
-    decoration: BoxDecoration(
-      color: Color(0xFF5CC060), // Use Color(int) to define the color
-      borderRadius: BorderRadius.circular(10), // Add rounded corners
-    ),
-    child: Center(
-      child: Text(
-        'View Student',
-        style: TextStyle(
-          color: Colors.white, // Text color
-          fontSize: 18, // Text size
-          fontWeight: FontWeight.bold, // Text weight
-        ),
-      ),
-    ),
-  ),
-),
-      ],
-    ),
-  ),
         
   );}
 

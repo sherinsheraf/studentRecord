@@ -1,17 +1,44 @@
+import 'dart:typed_data';
+
 import 'package:hive/hive.dart';
 
-part 'student_model.g.dart';
+part 'student_model.g.dart'; // Generated file
 
-@HiveType(typeId: 0)
-class Student extends HiveObject {
+
+@HiveType(typeId: 0) // HiveType annotation with typeId
+class StudentModel extends HiveObject {
   @HiveField(0)
-  String name;
+  late String name;
 
   @HiveField(1)
-  String rollNo;
+  late int rollNo;
 
   @HiveField(2)
-  String studentClass;
+  late String studentClass;
+ @HiveField(3)
+ late int? id;
 
-  Student(this.name, this.rollNo, this.studentClass);
+  @HiveField(4)
+  late Uint8List? photo;
+
+  StudentModel({required this.name, required this.rollNo, required this.studentClass, this.id,this.photo});
+
+  // StudentModel.fromMap(Map<String, dynamic> map) {
+    
+    
+  //   id = map['id'] as int;
+  //   name = map['name'] as String; 
+  //   rollNo = map['rollNo'] as int;  
+  //   studentClass = map['studentClass'] as String; 
+   
+    
+  // }
+
+  //   Map<String, dynamic> toJson() => {
+  //       "name": name,
+  //       "id": id,
+  //       "rollNo": rollNo,
+  //       "studentClass": studentClass,
+  //   };
+
 }
